@@ -75,6 +75,7 @@ if __name__ == '__main__':
     totol_ppl = []
     oov_count = 0
     good_ppl = 0
+    good_oov = 0
     for line in tqdm(test_file.readlines()):
         sentence = line.strip()
         # print("<<<<<< sentence is: {}".format(sentence))
@@ -93,12 +94,16 @@ if __name__ == '__main__':
             print("<<<<<< sentence is: {}".format(sentence))
             print('score={}'.format(ppl2score(ppl)))
             print('ppl={}'.format(ppl))
-
             words = ['<s>'] + sentence.split() + ['</s>']
             for i, (prob, length, oov) in enumerate(model.full_scores(sentence)):
                 if oov:
-                    print('\t"{0}" is an OOV'.format(words[i+1]))
-                    oov_count+=1
+                    good_oov += 1
+
+        words = ['<s>'] + sentence.split() + ['</s>']
+        for i, (prob, length, oov) in enumerate(model.full_scores(sentence)):
+            if oov:
+                print('\t"{0}" is an OOV'.format(words[i+1]))
+                oov_count+=1
         # idx_errors = corrector.detect(''.join(sentence.split()))
         # print(sentence, '>>>>>>', idx_errors)
         # print()
@@ -112,3 +117,4 @@ if __name__ == '__main__':
 
     print(oov_count)
     print(good_ppl)
+    print(good_oov)
