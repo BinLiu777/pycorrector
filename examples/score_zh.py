@@ -24,6 +24,8 @@ if model_type == '1':
     LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/zh_giga.no_cna_cmn.prune01244.klm')
 elif model_type == '2':
     LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/mix_bjh_order_3gram_large.klm')
+elif model_type == '3':
+    LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/baijiahao_3order_punctuation_ori.klm')
 else:
     LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/mix_orders_3order.klm')
 model = kenlm.LanguageModel(LM)
@@ -69,6 +71,8 @@ if __name__ == '__main__':
     totol_logpplscores = []
     totol_logppl = []
     totol_ppl = []
+    oov_count = 0
+    good_ppl = 0
     for line in tqdm(test_file.readlines()):
         sentence = line.strip()
         # print("<<<<<< sentence is: {}".format(sentence))
@@ -83,6 +87,7 @@ if __name__ == '__main__':
         totol_ppl.append(ppl)
         # print('ppl={}'.format(ppl))
         if ppl <= 300:
+            good_ppl+=1
             print("<<<<<< sentence is: {}".format(sentence))
             print('score={}'.format(ppl2score(ppl)))
             print('ppl={}'.format(ppl))
@@ -91,6 +96,7 @@ if __name__ == '__main__':
             for i, (prob, length, oov) in enumerate(model.full_scores(sentence)):
                 if oov:
                     print('\t"{0}" is an OOV'.format(words[i+1]))
+                    oov_count+=1
         # idx_errors = corrector.detect(''.join(sentence.split()))
         # print(sentence, '>>>>>>', idx_errors)
         print()
@@ -101,3 +107,6 @@ if __name__ == '__main__':
     print('avg of logppl scores: ', np.mean(totol_logpplscores))
     print('avg of ppl: ', np.mean(totol_ppl))
     print('avg of logppl: ', np.mean(totol_logppl))
+
+    print(oov_count)
+    print(good_ppl)
