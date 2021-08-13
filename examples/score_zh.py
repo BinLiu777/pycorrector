@@ -101,7 +101,7 @@ if __name__ == '__main__':
                     oov_count+=1
         # idx_errors = corrector.detect(''.join(sentence.split()))
         # print(sentence, '>>>>>>', idx_errors)
-        print()
+        # print()
 
 
     print(len(totol_ppl))
