@@ -6,6 +6,7 @@ import sys
 import numpy as np
 #sys.path.append("../")
 sys.path.append("/Users/qzlbxyz/PycharmProjects/pycorrector/")
+sys.path.append("/data/liubin/pycorrector/")
 # print(sys.path)
 import pycorrector_adjust
 from tqdm import tqdm
