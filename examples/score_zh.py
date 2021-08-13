@@ -26,7 +26,8 @@ if model_type == '1':
 elif model_type == '2':
     LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/mix_bjh_order_3gram_large.klm')
 elif model_type == '3':
-    LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/baijiahao_3order_punctuation_ori.klm')
+    # LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/baijiahao_3order_punctuation_ori.klm')
+    LM = os.path.join('/home/liubin/.pycorrector/datasets/baijiahao_3order_punctuation_ori.klm')
 else:
     LM = os.path.join('/Users/qzlbxyz/.pycorrector/datasets/mix_orders_3order.klm')
 model = kenlm.LanguageModel(LM)
