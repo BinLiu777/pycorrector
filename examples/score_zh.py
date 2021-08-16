@@ -104,7 +104,7 @@ if __name__ == '__main__':
             if oov:
                 print('\t"{0}" is an OOV'.format(words[i+1]))
                 oov_count+=1
-        # idx_errors = corrector.detect(''.join(sentence.split()))
+        idx_errors = corrector.detect(''.join(sentence.split()))
         # print(sentence, '>>>>>>', idx_errors)
         # print()
 
