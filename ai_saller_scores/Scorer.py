@@ -10,7 +10,8 @@ import os
 from tqdm import tqdm
 import pickle
 import kenlm
-from pycorrector_adjust import Corrector
+# from pycorrector_adjust import Corrector
+from pycorrector import Corrector
 from seq2vec.bert_vec import BertTextNet, BertSeqVec
 import numpy as np
 import re

@@ -2,3 +2,11 @@ jieba>=0.39
 pypinyin
 numpy
 six
+fuzzywuzzy
+torch==1.7.1
+scipy==1.7.1
+sklearn
+python-Levenshtein
+transformers==4.2.1
+pkuseg
+pycorrector
